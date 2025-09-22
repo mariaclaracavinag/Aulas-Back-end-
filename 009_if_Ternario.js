@@ -9,6 +9,7 @@ if (aprovado == true){
 // o ternario é divo que faz tudo em 5 linhas virar 1
 
 //DIVONICO NOWWW
+//      condiçãooooooooo      ? se verdadeiro : se falso
 mensagem = (aprovado == true) ? "aprovado" : "reprovado"
 
 // douglas said that this is scarry, im afraid 
