@@ -1,0 +1,23 @@
+<h1 class="titulo"> juros simples </h1>
+
+<form action="/jurosSimples" method="post">
+    <label for="capital"> Capital Inicial (P) </label>
+    <input type="number" id="capital" name="capital" placeholder="ex: 1000" required>
+
+    <label for="taxa"> Taxa de Juros (% a.m.) </label>
+    <input type="number" id="taxa" name="taxa" placeholder="ex: 5" required>
+
+    <label for="tempo"> Tempo (meses) </label>
+    <input type="number" id="tempo" name="tempo" placeholder="ex: 12" required>
+
+    <button type="submit"> calcular </button>
+</form>
+
+<% if(typeof total !='undefined' ) { %>
+    <div class="resultado">
+        <h2>Resultado: </h2>
+        <p> Capital : R$ <%= capital %> </p>
+                <p> Juros Simples : R$ <%= juros %> </p>
+                        <p> total : R$ <%= total %> </p>
+    </div>
+    <% } %>
