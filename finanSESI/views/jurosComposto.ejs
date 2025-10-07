@@ -1,0 +1,23 @@
+<h1 class="titulo">Juros Compostos</h1>
+
+<form action="/jurosComposto" method="POST">
+    <label for="capital">Capital Inicial (P):</label>
+    <input type="text" id="capital" name="capital" placeholder="Ex: 1000" required>
+    <br>
+    <label for="taxa">Taxa de Juros (% ao mês):</label>
+    <input type="text" id="taxa" name="taxa" placeholder="Ex: 5" required>
+    <br>
+    <label for="tempo">Tempo (meses):</label>
+    <input type="text" id="tempo" name="tempo" placeholder="Ex: 12" required>
+    <br>
+    <button type="submit">Calcular</button>
+</form>
+
+<% if (typeof juros !== 'undefined') { %>
+    <div class="resultado">
+        <h2>Resultado:</h2>
+        <p>Capital: R$ <%= capital %></p>
+        <p>Juros Compostos: R$ <%= juros.toFixed(2) %></p>
+        <p>Total: R$ <%= total.toFixed(2) %></p>
+    </div>
+<% } %>

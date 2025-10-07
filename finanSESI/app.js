@@ -30,6 +30,10 @@ app.get('/jurosSimples',(req,res) => {
     //buscando arquvio index.ejs na pasta views 
     res.render('jurosSimples'); 
 });
+app.get('/jurosComposto',(req,res) => {
+    //buscando arquvio index.ejs na pasta views 
+    res.render('jurosComposto'); 
+});
 
 app.post('/jurosSimples', (req,res) =>{
     //recebendo os dados do campos do formulario
@@ -41,6 +45,16 @@ app.post('/jurosSimples', (req,res) =>{
 
     res.render('jurosSimples', {capital,taxa,tempo,juros,total});
 })
+app.post('/jurosComposto', (req, res) => {
+    const capital = (req.body.capital);
+    const taxa = Number (req.body.taxa) / 100;
+    const tempo = (req.body.tempo);
+
+    const total = capital * (1 + taxa) ** tempo;
+    const juros = total - capital;
+
+    res.render('jurosComposto', { capital, taxa: req.body.taxa, tempo, juros, total });
+});
 
 const porta = 3000;
 app.listen(porta,() => {
