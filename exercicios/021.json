@@ -1,0 +1,19 @@
+{
+    "nome" : "maria clara", 
+    "username": "mariaclaracavinag",
+    "nr_seguidores": "600",
+    "posts": [
+        {
+            "legendas" : " São Paulo",
+            "curtidas": " 300"
+        },
+        {
+            "legendas" : "Rio de Janeiro",
+            "curtidas": " 300"
+        },
+        {
+            "legendas" : " Balneario Camburio",
+            "curtidas": " 300"
+        }
+    ]
+}

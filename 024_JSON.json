@@ -1,0 +1,19 @@
+{
+    "nome": "rogerio", 
+    "idade": 25,
+    "turma": {
+        "nome_turma": "2° B", 
+        "ano" : 2025
+    }, 
+    "notas": [
+        {
+            "disciplina": "matematica", 
+            "nota": 10
+        }, 
+        {
+            "disciplina": "portugues", 
+            "nota": 10
+        }
+    ]
+
+}

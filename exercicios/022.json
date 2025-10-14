@@ -1,0 +1,20 @@
+{
+    "nome": "café, amor e especiarias",
+    "ano_lancamento":"2025", 
+    "preco": 40.37,
+    "autora":{ "nome": "laurie gilmore", "nacionalidade": "desconhecida" },
+    "generos": ["romance", "comedia romantica"],
+    "personagens": [
+        {
+            "nome": "jeanie",
+            "idade": 20,
+            "papel": "protagonista"
+        },
+        {
+            "nome": "Logan",
+            "idade": 20,
+            "papel": "protagonista"
+        }
+    ]
+
+}
