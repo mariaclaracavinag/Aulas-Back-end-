@@ -1,0 +1,295 @@
+/* ===========================
+   ESTILO GERAL
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #007bff;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header .logo img {
+  height: 50px;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+  color: #ffd700;
+}
+
+/* BOTÃO */
+.botao {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #ffd700;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.botao:hover {
+  background-color: #e6c200;
+  color: white;
+}
+
+/* ===========================
+   SEÇÃO INÍCIO
+=========================== */
+#inicio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 50px;
+  background-color: #e6f0ff;
+  gap: 50px;
+}
+
+#inicio .inicio-texto {
+  flex: 1;
+}
+
+#inicio .inicio-texto h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+#inicio .inicio-texto p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+#inicio .inicio-img img {
+  width: 500px;
+  border-radius: 10px;
+}
+
+/* ===========================
+   SEÇÃO SOBRE
+=========================== */
+#sobre {
+  display: flex;
+  padding: 80px 50px;
+  gap: 50px;
+  background-color: #fff;
+}
+
+#sobre .sobre-img img {
+  width: 400px;
+  border-radius: 10px;
+}
+
+#sobre .texto {
+  flex: 1;
+}
+
+#sobre .texto p {
+  margin-bottom: 15px;
+}
+
+/* ===========================
+   SEÇÃO CURSOS
+=========================== */
+#cursos {
+  padding: 80px 50px;
+  background-color: #e6f0ff;
+}
+
+#cursos h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  color: #007bff;
+}
+
+.grid-colecoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* ===========================
+   SEÇÃO ESPORTE
+=========================== */
+#esporte {
+  padding: 80px 50px;
+  background-color: #fff;
+}
+
+#esporte h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 40px;
+}
+
+.esporte-bloco {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.esporte-bloco .texto {
+  flex: 1;
+}
+
+.esporte-bloco .imagem img {
+  width: 420px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+   SEÇÃO PASSAPORTE
+=========================== */
+#passaporte {
+  padding: 80px 50px;
+  background-color: #e6f0ff;
+}
+
+#passaporte h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 40px;
+}
+
+.passaporte-bloco {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.passaporte-bloco .texto {
+  flex: 1;
+}
+
+.passaporte-bloco .imagem img {
+  width: 420px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+footer {
+  background-color: #007bff;
+  color: white;
+  padding: 40px 50px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-contato p,
+.footer-links a,
+.footer-redes a {
+  margin-bottom: 10px;
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+
+.footer-links a:hover,
+.footer-redes a img:hover {
+  opacity: 0.8;
+}
+
+.footer-redes a img {
+  width: 30px;
+  margin-right: 10px;
+  border-radius: 15%;
+}
+
+footer .copyright {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9rem;
+}
+
+/* ===========================
+   RESPONSIVO
+=========================== */
+@media (max-width: 900px) {
+  #inicio,
+  #sobre,
+  .esporte-bloco,
+  .passaporte-bloco {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #inicio .inicio-img img,
+  #sobre .sobre-img img,
+  .esporte-bloco .imagem img,
+  .passaporte-bloco .imagem img {
+    width: 80%;
+    margin: 0 auto;
+  }
+}

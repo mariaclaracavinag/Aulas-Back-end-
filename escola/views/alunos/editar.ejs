@@ -1,0 +1,54 @@
+<%- include('../includes/header.ejs', {titulo: 'Atualizando dados de aluno'})%> 
+
+<main> 
+ <h2> Atualizando dados de alunos</h2>
+
+<form action="/alunos/editar/<%= aluno.id_aluno%>" method="post" class="form"> 
+     <div class="form-group">
+        <label> nome do aluno: </label>
+        <input type="text" name="nome" required  value="<%= aluno.nome %>" > 
+     </div>
+     <div class="form-group">
+        <label> idade: </label>
+        <input type="text" name="idade" required value="<%= aluno.idade %>"> 
+     </div>
+     <div class="form-group">
+        <label> email: </label>
+        <input type="email" name="email" required value="<%= aluno.email %>"> 
+     </div>
+     <div class="form-group">
+        <label> cpf: </label>
+        <input type="text" name="cpf" required value="<%= aluno.cpf %>"> 
+     </div>
+     <div class="form-group">
+        <label> foto do aluno: </label>
+        <input type="text" name="foto"> 
+     </div>
+     <div class="form-group">
+        <label> sexo: </label>
+        <select name="sexo" id="">
+            <option value="m" <% if(aluno.sexo == 'm') { %> selected <% } %> >Masculino</option>
+            <option value="f"  <% if(aluno.sexo == 'f') { %> selected <% } %>>Feminino</option>
+        </select>
+     </div>
+     <div class="form-group">
+        <label> turma: </label>
+      <select name = "id_turma" required> 
+        <option value =" "> selecione a turma</option>
+        <!----gerando a lista de professores cadastrados--->  
+        <% for (let turma of dadosturmas) { %> 
+             <option value = " <%= turma.id_turma %>" 
+                <% if (aluno.id_turma == turma.id_turma) { %>
+                selected 
+                <% } %> 
+                ><%= turma.nome_turma %></option>
+        <% } %> 
+      </select>
+     </div>
+     <button type = "submit" class="btn btn-principal"> Salvar</button>
+     <a href="/alunos/listar" class="btn btn-secundario"> Cancelar</a>
+</form>
+
+</main>
+
+<%- include('../includes/footer.ejs')%> 

@@ -1,0 +1,32 @@
+<%- include('../includes/header.ejs', {titulo: 'NOTAS de alunos'})%> 
+
+<main> 
+ <h2> Notas e faltas de <%= aluno.nome %> </h2>
+
+<form action="/alunos/notas/<%= aluno.id_aluno%>" method="post"> 
+   <div class="form-group">
+        <label> Disciplina: </label>
+      <select name = "id_disciplina" required> 
+        <option value =" "> selecione a disciplina</option>
+        <!----gerando a lista de professores cadastrados--->  
+        <% for (let disciplina of dadosDisciplinas) { %> 
+             <option value = "<%= disciplina.id_disciplina%>" > <%= disciplina.nome_disciplina %> </option>
+        <% } %> 
+      </select>
+     </div> 
+     <div class="form-group">
+        <label> media: </label>
+        <input type="number" name="media" required> 
+     </div>
+     <div class="form-group">
+        <label> N°Faltas: </label>
+        <input type="number" name="nr_faltas" required> 
+     </div>
+     
+     <button type = "submit" class="btn btn-principal"> adicionar</button>
+     <a href="/alunos/listar" class="btn btn-secundario"> Cancelar</a>
+</form>
+
+</main>
+
+<%- include('../includes/footer.ejs')%> 

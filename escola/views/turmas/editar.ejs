@@ -1,0 +1,17 @@
+<%- include('../includes/header.ejs', {titulo: 'alterando dados'})%> 
+
+<main> 
+ <h2> Cadastro de turmas</h2>
+
+<form action="/turmas/novo" method="post" class="form"> 
+     <div class="form-group">
+        <label> nome da turma: </label>
+        <input type="text" name="nome_turma" required> 
+     </div>
+     <button type = "submit" class="btn btn-principal"> adicionar</button>
+     <a href="/professores/listar" class="btn btn-secundario"> Cancelar</a>
+</form>
+
+</main>
+
+<%- include('../includes/footer.ejs')%> 

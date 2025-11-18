@@ -1,0 +1,66 @@
+<%- include('../includes/header.ejs', {titulo: 'lista de professores' })%>
+
+   <main>
+      <h2>Lista de Professores</h2>
+      <a href="/professores/novo" class="btn btn-principal"> adicionar professor</a>
+      <a href="/professores/novo" class="btn_flutuante"> +</a>
+
+
+      <form action="/professores/listar" method="GET" class=" form form-consulta">
+         <input type="text" name="busca"  placeholder="buscar por nome ou formação" value="<%= busca %>">
+         <select name="ordem">
+            <option value="nome_professor"> Ordenar por professor </option>
+            <option value="formacao"> ordernar por Formação </option>
+         </select>
+         <button type="submit" class="btn btn-principal"> buscar </button>
+      </form>
+
+      <table class="dados-table">
+         <thead>
+            <tr>
+               <th> nome</th>
+               <th> telefone </th>
+               <th> formação </th>
+               <th> ações</th>
+            </tr>
+         </thead>
+         <tbody>
+            <% for(let professor of dadosProfessores){ %>
+               <tr>
+                  <td>
+                     <%= professor.nome_professor %>
+                  </td>
+                  <td>
+                     <%= professor.telefone %>
+                  </td>
+                  <td>
+                     <%= professor.formacao%>
+                  </td>
+                  <td class="acoes">
+                     <a href="/professores/Editar/<%= professor.id_professor %>" class="btn btn-edit"> Editar</a>
+                     <form action="/professores/Excluir/<%= professor.id_professor %>" method="POST">
+                        <button type="submit" class=" btn btn-delete">Excluir</button>
+                     </form>
+                  </td>
+               </tr>
+               <% } %>
+         </tbody>
+      </table>
+
+      <div class="paginacao">
+         <% if (pgAtual > 1) { %> 
+           <a href="/professores/listar?pg=<%= pgAtual -1 %>" class=" btn btn-principal"> Anterior</a>
+        <% } %>
+        
+         <span> Pàgina <%= pgAtual %> de <%= totalPgs %> </span>
+
+         <% if (pgAtual < totalPgs) { %> 
+           <a href="/professores/listar?pg=<%= pgAtual +1 %>"class=" btn btn-principal"> Proxima</a>
+        <% } %>
+      </div>
+
+   </main>
+
+
+
+   <%- include('../includes/footer.ejs')%>

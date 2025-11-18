@@ -1,0 +1,55 @@
+<%- include('../includes/header.ejs', {titulo: 'lista disciplinas'})%> 
+
+  <main> 
+    <h2>Lista de disciplinas</h2> 
+<a href="/disciplinas/novo " class="btn btn-principal"> adicionar disciplina</a>
+<a href="/disciplinas/novo " class="btn_flutuante"> +</a>
+
+  <form action="/disciplinas/listar" method="GET" class=" form form-consulta">
+         <input type="text" name="busca" placeholder="buscar por nome ou professor">
+         <select name="ordem">
+            <option value="nome_professor"> Ordenar por professor </option>
+            <option value="nome_disciplina"> ordernar por turma </option>
+         </select>
+         <button type="submit" class="btn btn-principal"> buscar </button>
+      </form>
+
+    <table class="dados-table"> 
+         <thead> 
+            <tr> 
+                <th> nome</th>
+                <th> Professor</th>
+                <th> ações</th>
+            </tr>
+         </thead>
+      <tbody>
+       <% for (let disciplina of dadosDisciplinas) { %>
+        <tr> 
+            <td> <%= disciplina.nome_disciplina %></td>
+            <td> <%= disciplina.nome_professor %></td>
+            <td class="acoes"> 
+               <a href="/disciplinas/Editar/<%= disciplina.id_disciplina%>"class="btn btn-edit"> Editar</a>
+                <form action="/disciplinas/Excluir/<%= disciplina.id_disciplina%>" method="POST"> 
+                  <button type="submit" class="btn btn-delete">Excluir</button>
+               </form>
+            </td>
+        </tr>
+         <%  } %> 
+      </tbody>
+  </table> 
+   <div class="paginacao">
+         <% if (pgAtual > 1) { %> 
+           <a href="/disciplinas/listar?pg=<%= pgAtual -1 %>" class=" btn btn-principal"> Anterior</a>
+        <% } %>
+        
+         <span> Pàgina <%= pgAtual %> de <%= totalPgs %> </span>
+
+         <% if (pgAtual < totalPgs) { %> 
+           <a href="/disciplinas/listar?pg=<%= pgAtual +1 %>"class=" btn btn-principal"> Proxima</a>
+        <% } %>
+      </div>
+  </main>
+
+
+
+<%- include('../includes/footer.ejs')%> 
