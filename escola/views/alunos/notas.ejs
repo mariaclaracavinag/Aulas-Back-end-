@@ -1,32 +1,148 @@
-<%- include('../includes/header.ejs', {titulo: 'NOTAS de alunos'})%> 
+<%- include('../includes/header.ejs', { titulo: 'Notas de Alunos' }) %>
 
-<main> 
- <h2> Notas e faltas de <%= aluno.nome %> </h2>
+    <main>
+        <h2 class="text-2xl font-bold">Notas e Faltas de <%= aluno.nome %>
+        </h2>
 
-<form action="/alunos/notas/<%= aluno.id_aluno%>" method="post"> 
-   <div class="form-group">
-        <label> Disciplina: </label>
-      <select name = "id_disciplina" required> 
-        <option value =" "> selecione a disciplina</option>
-        <!----gerando a lista de professores cadastrados--->  
-        <% for (let disciplina of dadosDisciplinas) { %> 
-             <option value = "<%= disciplina.id_disciplina%>" > <%= disciplina.nome_disciplina %> </option>
-        <% } %> 
-      </select>
-     </div> 
-     <div class="form-group">
-        <label> media: </label>
-        <input type="number" name="media" required> 
-     </div>
-     <div class="form-group">
-        <label> N°Faltas: </label>
-        <input type="number" name="nr_faltas" required> 
-     </div>
-     
-     <button type = "submit" class="btn btn-principal"> adicionar</button>
-     <a href="/alunos/listar" class="btn btn-secundario"> Cancelar</a>
-</form>
+        <!-- Tabs / Abas -->
+        <section class="max-w-3xl mx-auto bg-white rounded-xl shadow mt-5">
+            <div class="border-b border-gray-300">
+                <nav class="flex flex-wrap -mb-px text-sm font-medium text-center">
+                    <button class="abas active inline-block p-3 border-b-2 
+                        border-transparent rounded-t-lg hover:text-blue-600
+                        hover:border-blue-600" data-tab="tab1">
+                        Lançar Notas
+                    </button>
+                    <button class="abas inline-block p-3 border-b-2 
+                        border-transparent rounded-t-lg hover:text-blue-600
+                        hover:border-blue-600" data-tab="tab2">
+                        Lista de Notas
+                    </button>
+                    <button class="abas inline-block p-3 border-b-2 
+                        border-transparent rounded-t-lg hover:text-blue-600
+                        hover:border-blue-600" data-tab="tab3">
+                        Gráfico de Notas
+                    </button>
+                </nav>                
+               
+                <div id="tab1" class="conteudo-abas p-4 ">
+                    <form action="/alunos/notas/<%= aluno.id_aluno %>" method="POST">
+            <div class="form-group">
+                <label>Disciplina:</label>
+                <select name="id_disciplina" required>
+                    <option value="">Selecione uma disciplina</option>
+                    <% for (let disciplina of dadosDisciplinas) { %>
+                        <option value="<%= disciplina.id_disciplina %>">
+                            <%= disciplina.nome_disciplina %>
+                        </option>
+                        <% } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Média:</label>
+                <input type="number" name="media" required>
+            </div>
+            <div class="form-group">
+                <label>Nº Faltas:</label>
+                <input type="number" name="nr_faltas" required>
+            </div>
+            <button type="submit" class="btn btn-principal">Salvar</button>
+            <a href="/alunos/listar" class="btn btn-secundario">Cancelar</a>
+        </form>
+                </div>
 
-</main>
+                <div id="tab2" class="conteudo-abas p-4  hidden">
+                    <p>Lista de Notas </p>
+                    <table class="dados-table"> 
+                     <thead>
+                        <tr>
+                           <th> Disciplina</th>
+                           <th> Média</th>
+                           <th> Faltas</th>
+                           <th> Status</th>
+                           <th> Ações </th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <%for (let nota of dadosNotas){ %> 
+                           <tr> 
+                              <td> <%= nota.nome_disciplina %></td>
+                              <td> <%= nota.media %></td>
+                              <td> <%= nota.nr_faltas %></td>
+                              <td> <%= nota.Status %></td>
+                              <td></td>
 
-<%- include('../includes/footer.ejs')%> 
+                            </tr>
+                      <%  } %> 
+                     </tbody>
+                    </table>
+                </div>
+                
+                <div id="tab3" class="conteudo-abas p-4  hidden">
+                    <p>Gráfico de Notas </p>
+                    <canvas id="graficoNotasFaltas"></canvas>
+                </div>
+            </div>
+        </section>
+
+        
+
+    </main>
+
+    <!-- SCRIPT DAS TABS -->
+    <script>
+        const abas = document.querySelectorAll('.abas');
+        const conteudoAbas = document.querySelectorAll('.conteudo-abas');
+
+        //abas.forEach(aba => {
+        for (let aba of abas) {
+            aba.addEventListener('click', () => {
+                const tab = aba.dataset.tab;
+
+                // Ativar aba clicada
+                abas.forEach( botao => botao.classList.remove('active'));
+                aba.classList.add('active');
+
+                // Mostrar conteúdo da aba clicada
+                conteudoAbas.forEach( conteudo => conteudo.classList.toggle('hidden', conteudo.id !== tab) );
+
+            });
+        }
+        
+    </script>
+
+        <!-- SCRIPT Do grafico -->
+         <script> 
+         //recebendo o vetor dadosNotas com a consulta do banco de dados
+             const dadosNotas = <%- JSON.stringify(dadosNotas) %>; 
+            
+             //extraindo a disciplina, a media e as faltas gerando novos vetores
+             const nomeDisciplinas= dadosNotas.map(item => item.nome_disciplina); 
+             const medias= dadosNotas.map(item => item.media);
+             const faltas = dadosNotas.map(item => item.nr_faltas    );
+
+             //gerando o grafico
+             const grafico = document.getElementById('graficoNotasFaltas').getContext('2d'); 
+             new Chart(grafico, {
+               type: 'bar', 
+               data: {
+                  labels: nomeDisciplinas,
+                  datasets:[
+                     {label:'media', data: medias },
+                     {label:'Faltas', data: faltas }
+                  ]
+               }, 
+               options:{}
+             });
+
+         </script>
+
+
+
+
+
+
+
+
+
+    <%- include('../includes/footer.ejs') %>

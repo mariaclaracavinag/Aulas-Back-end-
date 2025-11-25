@@ -203,3 +203,10 @@ h2{
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     cursor: ponter; 
 }
+
+.abas.active {
+    color: rgb(37, 99, 235);
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-bottom: 2px solid rgb(37, 99, 235);
+}

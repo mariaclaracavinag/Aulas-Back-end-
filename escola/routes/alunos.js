@@ -104,7 +104,16 @@ rotas.get('/notas/:id', async (req, res) => {
     const dados = await BD.query(sql, [id]);
 
     const dadosDisciplinas = await BD.query(`SELECT * From disciplinas Where ativo = true`);
-    res.render('alunos/notas.ejs', { aluno: dados.rows[0], dadosDisciplinas: dadosDisciplinas.rows });
+   
+    const dadosNotas = await BD.query(`
+        SELECT d.nome_disciplina, ad.media,ad.nr_faltas, ad.status, ad.id_aluno, ad.id_disciplina
+        FROM disciplinas AS d 
+        INNER JOIN aluno_disciplina AS ad ON d.id_disciplina = ad.id_disciplina where ad.id_aluno =$1`, 
+        [id]); 
+
+
+
+    res.render('alunos/notas.ejs', { aluno: dados.rows[0], dadosDisciplinas: dadosDisciplinas.rows, dadosNotas: dadosNotas.rows});
 });
 rotas.post('/notas/:id', async (req, res) => {
     const id = req.params.id;

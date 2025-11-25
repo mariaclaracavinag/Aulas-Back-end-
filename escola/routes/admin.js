@@ -15,7 +15,7 @@ rotas.post('/login', async (req, res) => {
    const sql = 'SELECT * FROM usuarios where email = $1 AND senha = $2'; 
    const dados = await BD.query(sql, [email, senha] )
 
-   if(dados.rows.leght ==0 ){
+   if(dados.rows.length ==0 ){
     res.render ('admin/login.ejs', {mensagem: 'email ou senha incorretos'}); 
    }else{
     req.session.usuario = dados.rows[0]; 
